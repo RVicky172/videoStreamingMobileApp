@@ -5,16 +5,25 @@
  * @format
  */
 
+import React, { useEffect, useState } from 'react';
+import { FlatList, StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import VideoPlayer from './components/VideoPlayer'; // Assuming you have a VideoPlayer component
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  interface Video {
+    id: number;
+    url: string;
+  }
+
+  const [videos, setVideos] = useState<Video[]>([]);
+
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
+      <VideoPlayer videoUrl="https://www.w3schools.com/html/mov_bbb.mp4" />
     </View>
   );
 }
